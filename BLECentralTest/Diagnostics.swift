@@ -23,13 +23,13 @@ class Diagnostics {
   }
   
   class func clearLogFile() {
-    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
-//    let path = paths.stringByAppendingPathComponent(logFileName)
-//
-//    do {
-//      try NSFileManager.defaultManager().removeItemAtPath(path)
-//    } catch _ {
-//    }
+    let paths : NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+    let path = paths.stringByAppendingPathComponent(logFileName)
+
+    do {
+      try NSFileManager.defaultManager().removeItemAtPath(path)
+    } catch _ {
+    }
     
     
   }

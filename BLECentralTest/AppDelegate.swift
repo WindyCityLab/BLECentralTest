@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
     Diagnostics.writeToPlist("\n\n\n\n\n\n-------------APP LAUNCH-------------\n Launch Options: \(launchOptions)")
-//    Diagnostics.clearLogFile()
+    Diagnostics.clearLogFile()
     
     if let centralManagerIdentifiers: AnyObject = launchOptions?[UIApplicationLaunchOptionsBluetoothCentralsKey]{
       for id in centralManagerIdentifiers as! [String] {
