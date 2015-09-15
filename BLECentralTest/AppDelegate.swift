@@ -15,7 +15,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Override point for customization after application launch.
+
+    Diagnostics.writeToPlist("\n\n\n\n\n\n-------------APP LAUNCH-------------\n Launch Options: \(launchOptions)")
+//    Diagnostics.clearLogFile()
+    
+    if let centralManagerIdentifiers: AnyObject = launchOptions?[UIApplicationLaunchOptionsBluetoothCentralsKey]{
+      for id in centralManagerIdentifiers as! [String] {
+        Diagnostics.showNotificationWithMessage("👻 Resurrected the app! 👻")
+        Diagnostics.writeToPlist("app delegate restored BTLE manager \(id)")
+        print("app delegate restored BTLE manager \(id)");
+        
+      }
+    } else {
+      Diagnostics.writeToPlist("app delegate had nothing to restore")
+      
+      print("app delegate had nothing to restore");
+    }
+
+    
+    if application.respondsToSelector("registerUserNotificationSettings:") {
+      
+      application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [UIUserNotificationType.Alert, UIUserNotificationType.Sound], categories: nil))
+    }
+
+    
     return true
   }
 
@@ -39,6 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    Diagnostics.writeToPlist("-------------APP TERMINATED------------")
+
   }
 
 
